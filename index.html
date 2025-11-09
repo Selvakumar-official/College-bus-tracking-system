@@ -1,57 +1,13 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>College Bus Tracking — Demo</title>
-  <style>
-    :root{
-      --bg:#f4f7fb; --card:#ffffff; --accent:#2b6ef6; --muted:#6b7280; --success:#16a34a;
-      --danger:#ef4444; --glass: rgba(255,255,255,0.6);
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    }
-    *{box-sizing:border-box}
-    body{margin:0;background:linear-gradient(180deg,var(--bg),#eef3fb);color:#0f172a}
-    header{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;background:var(--card);box-shadow:0 6px 18px rgba(13,30,60,0.06);border-bottom:1px solid rgba(15,23,42,0.04);position:sticky;top:0;z-index:10}
-    .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#6c8cff);display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
-    h1{font-size:18px;margin:0}
-    .sub{color:var(--muted);font-size:13px}
-
-    .container{display:grid;grid-template-columns:320px 1fr;gap:20px;padding:22px;max-width:1200px;margin:22px auto}
-
-    /* Sidebar */
-    .sidebar{background:var(--card);border-radius:12px;padding:18px;box-shadow:0 6px 18px rgba(13,30,60,0.04)}
-    .search input{width:100%;padding:10px 12px;border-radius:10px;border:1px solid #e6eefb;background:transparent}
-    .section-title{margin-top:16px;margin-bottom:10px;font-weight:600}
-    .bus-list{display:flex;flex-direction:column;gap:10px;}
-    .bus{display:flex;gap:12px;align-items:center;padding:10px;border-radius:10px;border:1px solid rgba(15,23,42,0.03)}
-    .bus .avatar{width:44px;height:44px;background:var(--glass);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent)}
-    .bus .meta{flex:1}
-    .bus .meta .name{font-weight:600}
-    .status{font-size:12px;padding:6px 8px;border-radius:999px;font-weight:600}
-    .status.on{background:rgba(34,197,94,0.12);color:var(--success)}
-    .status.off{background:rgba(239,68,68,0.08);color:var(--danger)}
-
-    /* Main */
-    .main{display:flex;flex-direction:column;gap:16px}
-    .card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 6px 18px rgba(13,30,60,0.04)}
-    #map{height:520px;border-radius:10px;background:linear-gradient(180deg,#dbeafe,#eef2ff);display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:600}
-
-    .info-row{display:flex;gap:12px}
-    .pill{padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,#fff,#fbfdff);border:1px solid rgba(11,20,60,0.03);display:flex;flex-direction:column}
-    .pill .big{font-size:18px;font-weight:700}
-    .stops{display:flex;flex-direction:column;gap:8px;margin-top:10px}
-    .stop{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:8px;border:1px solid rgba(15,23,42,0.03)}
-
-    footer{max-width:1200px;margin:22px auto;padding:12px 22px;color:var(--muted);font-size:13px}
-
-    /* Responsive */
-    @media (max-width:900px){.container{grid-template-columns:1fr;padding:12px}.sidebar{order:2}.main{order:1}#map{height:420px}}
-
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>College Bus Tracking System</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- HEADER -->
   <header>
     <div class="brand">
       <div class="logo">CB</div>
@@ -65,6 +21,7 @@
     </div>
   </header>
 
+  <!-- CONTAINER -->
   <div class="container">
     <!-- SIDEBAR -->
     <aside class="sidebar">
@@ -103,30 +60,30 @@
       </div>
 
       <div class="section-title">Filter</div>
-      <div style="display:flex;gap:8px">
-        <button style="flex:1;padding:10px;border-radius:10px;border:1px solid rgba(15,23,42,0.04);background:transparent">All</button>
-        <button style="flex:1;padding:10px;border-radius:10px;border:1px solid rgba(15,23,42,0.04);background:transparent">On Route</button>
+      <div class="filter-row">
+        <button class="btn">All</button>
+        <button class="btn">On Route</button>
       </div>
 
       <div class="section-title">Quick Actions</div>
-      <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
-        <button style="padding:10px;border-radius:10px;border:0;background:var(--accent);color:white;font-weight:700">Contact Driver</button>
-        <button style="padding:10px;border-radius:10px;border:1px solid rgba(15,23,42,0.04);background:transparent">Report Delay</button>
+      <div class="quick-actions">
+        <button class="primary">Contact Driver</button>
+        <button class="btn">Report Delay</button>
       </div>
-
     </aside>
 
-    <!-- MAIN -->
+    <!-- MAIN CONTENT -->
     <main class="main">
       <div class="card">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div class="card-head">
           <div>
-            <div style="font-weight:700">Live Map</div>
-            <div class="sub">Shows the current location of selected bus and nearby stops</div>
+            <div class="title">Live Map</div>
+            <div class="sub">
+              Shows the current location of selected bus and nearby stops
+            </div>
           </div>
           <div class="sub">Updated: 1 min ago</div>
         </div>
-
         <div id="map">Map placeholder — integrate Google Maps or Leaflet here</div>
       </div>
 
@@ -134,35 +91,49 @@
         <div class="pill" style="flex:1">
           <div class="sub">Selected Bus</div>
           <div class="big">Bus - A1</div>
-          <div style="margin-top:8px;color:var(--muted);font-size:13px">Driver: Ramesh | Phone: +91-98765XXXXX</div>
+          <div class="muted">Driver: Ramesh | Phone: +91-98765XXXXX</div>
         </div>
 
         <div class="pill" style="width:220px">
           <div class="sub">Estimated Arrival</div>
           <div class="big">08:45 AM</div>
-          <div style="margin-top:8px;color:var(--muted);font-size:13px">Next stop: College Gate — 6 mins</div>
+          <div class="muted">Next stop: College Gate — 6 mins</div>
         </div>
 
         <div class="pill" style="width:220px">
           <div class="sub">Status</div>
-          <div class="big" style="color:var(--success)">On Time</div>
-          <div style="margin-top:8px;color:var(--muted);font-size:13px">Speed: 34 km/h</div>
+          <div class="big success">On Time</div>
+          <div class="muted">Speed: 34 km/h</div>
         </div>
       </div>
 
       <div class="card">
-        <div style="font-weight:700;margin-bottom:8px">Route Stops</div>
+        <div class="title">Route Stops</div>
         <div class="stops">
-          <div class="stop"><div>North Gate</div><div class="sub">07:50 AM</div></div>
-          <div class="stop"><div>Park Colony</div><div class="sub">08:00 AM</div></div>
-          <div class="stop"><div>East Junction</div><div class="sub">08:10 AM</div></div>
-          <div class="stop"><div>College Gate</div><div class="sub">08:39 AM</div></div>
+          <div class="stop">
+            <div>North Gate</div>
+            <div class="sub">07:50 AM</div>
+          </div>
+          <div class="stop">
+            <div>Park Colony</div>
+            <div class="sub">08:00 AM</div>
+          </div>
+          <div class="stop">
+            <div>East Junction</div>
+            <div class="sub">08:10 AM</div>
+          </div>
+          <div class="stop">
+            <div>College Gate</div>
+            <div class="sub">08:39 AM</div>
+          </div>
         </div>
       </div>
-
     </main>
   </div>
 
-  <footer>© 2025 College Bus Tracker • Built for students, staff & parents</footer>
+  <!-- FOOTER -->
+  <footer>
+    © 2025 College Bus Tracker • Built for students, staff & parents
+  </footer>
 </body>
 </html>
